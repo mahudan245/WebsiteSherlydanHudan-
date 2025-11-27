@@ -160,6 +160,20 @@ header h1 {
     padding: 0 5%;
     max-width: 1200px; /* Batasi lebar maksimum */
     margin: 0 auto; /* Tengah-kan kontainer */
+.navbar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a.active {
+    /* Ini yang membuat warna kuning! */
+    background-color: #ffd700; /* Kuning */
+    color: black;
+    border-radius: 5px;
+}
+
+  
 }
 
 /* Setiap Item Alasan */
