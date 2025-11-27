@@ -6,6 +6,9 @@
 }
 
 body {
+    /* --- PERBAIKAN: TAMBAH PADDING UNTUK NAVBAR FIXED (90px) --- */
+    padding-top: 90px; 
+    
     background: radial-gradient(circle at top left, #a0a0ff, #fa80a0, #a0a0ff);
     color: #fff;
     min-height: 100vh;
@@ -23,13 +26,14 @@ body {
 }
 
 nav {
-  position: fixed;
+    /* Hapus position: fixed yang berulang di sini */
     width: 100%;
     background: rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: center;
     gap: 30px;
     padding: 20px 0;
+    /* PENTING: Properti fixed untuk navbar */
     position: fixed;
     top: 0;
     left: 0;
@@ -41,7 +45,7 @@ nav {
 
 nav a {
     color: #fff;
-      text-decoration: none;
+    text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
@@ -65,7 +69,6 @@ h1 {
 
 p {
     font-size: 1rem;
-        font-size: 1rem;
     line-height: 1.6;
 }
 
@@ -82,56 +85,46 @@ p {
 
 /* memories grid */
 .memories-grid {
-  display: grid
- grid-template-columns: repeat(3, 1fr); 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
     gap: 10px; 
     max-width: 900px;
-    margin: 10pxpx; 
+    margin: 10px; 
     padding:10px;
-    img {
-    max-width: 900px;
-    height: 800px;
 }
-/* --- Awal Perbaikan: Gallery Container --- */
-.gallery-container {
-    display: grid;
-    /* Mulai dengan 2 kolom */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 15px; /* Jarak antar video */
-    padding: 20px;
-    max-width: 1000px; /* Batasi lebar maksimum */
-    margin: 80px auto 20px auto; /* Margin atas agar tidak tertutup nav */
-}
-
-/* Terapkan gaya pada elemen <video> di dalamnya */
-.gallery-container video {
+.memories-grid img { /* Perbaiki selector img di dalam .memories-grid */
     width: 100%;
-    /* Gunakan aspect-ratio untuk membuat kotak yang sempurna */
-    aspect-ratio: 16 / 9; /* Rasio video standar */
-    object-fit: cover; /* Pastikan video mengisi bingkai */
+    height: auto;
+    object-fit: cover;
+}
+
+.gallery-container { /* Perbaiki class name dari Gallery-container */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    padding: 10px;
+}
+.Item, .item { /* Memperbaiki Item/item */
+    overflow: hidden; 
+    aspect-ratio: 1 / 1; 
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: static !important; 
+}
+.item video, 
+.item img,
+.gallery-container video, /* Tambahkan selector untuk video/img di gallery */
+.gallery-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
     display: block;
-    border-radius: 8px; /* Sudut sedikit melengkung */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-/* Media Query untuk membuat responsif */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .gallery-container {
-        /* Untuk tablet, ubah menjadi 2 kolom */
-        grid-template-columns: repeat(2, 1fr);
-        padding: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 20px; 
     }
-}
-
-@media (max-width: 480px) {
-    .gallery-container {
-        /* Untuk ponsel, ubah menjadi 1 kolom penuh */
-        grid-template-columns: 1fr;
-        padding: 10px;
-    }
-}
-/* --- Akhir Perbaikan: Gallery Container --- */
-
 }
 
 
@@ -141,53 +134,17 @@ p {
         /* Kembali ke 1 kolom jika layar sangat kecil */
         grid-template-columns: 1fr;
     }
-
-  
 }
 
-}
 
-}/* style.css */
+/* Bagian Navigasi (Header) - dari bagian style.css yang tidak terpakai */
+/* Karena Anda sudah mendefinisikan 'nav' di atas, saya akan menghapus yang bertentangan 
+   kecuali untuk alasan (reasons) page yang menggunakan struktur berbeda */
 
-/* Reset Dasar */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif; /* Font standar yang mudah dibaca */
-    background-color: #1a0033; /* Ungu gelap untuk background */
-    color: #ffffff; /* Warna teks utama putih */
-}
+/* Untuk Reasons/Ourstory.html (struktur nav berbeda: menggunakan ul/li) */
+/* Pastikan body di Ourstory juga mendapat padding-top jika menggunakan nav fixed */
 
-/* Bagian Navigasi (Header) */
-nav {
-    background-color: #2e005c; /* Warna sedikit lebih terang dari body untuk nav */
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-}
-
-nav a:hover {
-    color: #ffcc00; /* Efek hover kuning/emas */
-}
-
-/* Judul Utama */
+/* Header Reasons (Ourstory.html) */
 header h1 {
     text-align: center;
     font-size: 2.5em;
@@ -197,7 +154,6 @@ header h1 {
 
 /* Kontainer Alasan (Paling Penting: Kolom) */
 .reasons-container {
-    /* Menggunakan Grid untuk layout 4 kolom */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 kolom dengan lebar sama */
     gap: 20px 10px; /* Jarak antar baris dan kolom */
@@ -221,7 +177,7 @@ header h1 {
     margin-right: 5px;
 }
 
-/* Media Query untuk Tampilan Responsif (Penting untuk layout kolom) */
+/* Media Query untuk Tampilan Responsif */
 
 /* Untuk tablet (maks 992px) - ubah menjadi 3 kolom */
 @media (max-width: 992px) {
@@ -246,11 +202,4 @@ header h1 {
     .reasons-container {
         grid-template-columns: 1fr;
     }
-/* Container Utama */
-.
-
-  
-
-
-
-
+}
